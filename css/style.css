@@ -86,3 +86,27 @@ body {
     width: 100%;
   }
 }
+
+/* Directional support */
+:dir(rtl) .milestone h2,
+:dir(rtl) .milestone h3,
+:dir(rtl) .hero-title,
+:dir(rtl) .hero-subheading {
+  text-align: right;
+}
+
+:dir(ltr) .milestone h2,
+:dir(ltr) .milestone h3,
+:dir(ltr) .hero-title,
+:dir(ltr) .hero-subheading {
+  text-align: left;
+}
+
+/* Center utility for accordion and newsletter */
+section.container {
+  text-align: center;
+}
+
+.accordion-button {
+  text-align: start;
+}
