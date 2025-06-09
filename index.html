@@ -234,19 +234,15 @@
   </script>
   <!-- Auto-detect language direction -->
   <script>
-    function detectAndApplyDirection() {
-      const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
-      const lang = document.documentElement.lang || navigator.language || 'en';
-      const shortLang = lang.slice(0, 2);
+    const rtlChars = /[\u0600-\u06FF\u0750-\u077F\u0590-\u05FF]/; // Arabic and Hebrew ranges
 
-      if (rtlLanguages.includes(shortLang)) {
-        document.documentElement.setAttribute('dir', 'rtl');
-      } else {
-        document.documentElement.setAttribute('dir', 'ltr');
-      }
-    }
+    const observer = new MutationObserver(() => {
+      const text = document.body.innerText;
+      const isRTL = rtlChars.test(text);
+      document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    });
 
-    detectAndApplyDirection();
+    observer.observe(document.body, { childList: true, subtree: true });
   </script>
 </body>
 </html>
